@@ -9,7 +9,7 @@ class MyClient(discord.Client):
     #on_ready happens once when the bot is up and running after boot
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
-    #
+    #on_message happens after each message is received
     async def on_message(self, message):
         print(message.author)
         t = time.localtime()
