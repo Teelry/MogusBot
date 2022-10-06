@@ -9,27 +9,55 @@ class MyClient(discord.Client):
     lb = open("leaderb.json","r")
     leaderb = json.load(lb)
     lb.close()
+    last = time.localtime()
+    lastday = last.tm_mday
+    lastmonth =last.tm_mon
     # on_ready happens once when the bot is up and running after boot
     async def on_ready(self):
         print("bot is ready")
         # I use json to store the scores of everyone's nose hits
     # on_message happens after each message is received
     async def on_message(self, message):
-        print(message.author)
+        
         t = time.localtime()
         h = t.tm_hour
         m = t.tm_min
         s = t.tm_sec
+        ms = int(time.time() * 1000) % 1000
+        day = t.tm_mday
+        month = t.tm_mon
+
         if (message.content == "nez"):
+            if (day == self.lastday and month == self.lastmonth):
+                await message.add_reaction("👃")
+                await message.add_reaction("❌")
+                await message.reply("Aie aie aie quelqu'un t'a volé tes zapatos :sob:")
+                h += 1
+
             if (h-m == 0):
+                mult = 1
+                points = 1
+                s = ""
+                if (ms <= 42 and message.author.name != "César"):
+                    s = "Bonus ! " + str(ms) + " milisecondes"
+                    mult = 10
+                    await message.add_reaction("🥳")
+                
+                if (h == 11 or h == 22 or h == 0):
+                    points = 2
+
                 await message.add_reaction("👃")
                 await message.add_reaction("✔️")
-                await message.reply("Félicitations ! Tu gagnes 1 point de :nose:")
+                await message.reply("Félicitations ! Tu gagnes "+ str(mult * points) +" point de :nose:")
+               
                 if message.author.name in self.leaderb:
-                   self.leaderb[message.author.name] += 1
+                    self.leaderb[message.author.name] += mult * points
                 else:
-                    self.leaderb[message.author.name] = 1
-                print(self.leaderb)
+                    self.leaderb[message.author.name] = mult * points
+              
+                self.lastday = day
+                self.lastmonth = month
+
                 lb = open("leaderb.json","w")
                 json.dump(self.leaderb,lb)
                 lb.close()
@@ -37,18 +65,29 @@ class MyClient(discord.Client):
             if (h-m == 1):
                 await message.add_reaction("👃")
                 await message.add_reaction("❌")
-                await message.reply("Presque mais trop tôt !")
+                await message.reply("Presque mais trop tôt ! -1 !")
+                if message.author.name in self.leaderb:
+                    self.leaderb[message.author.name] -= - 1
+                else:
+                    self.leaderb[message.author.name] = -1
+                lb = open("leaderb.json","w")
+                json.dump(self.leaderb,lb)
+                lb.close()
+
             if (h-m == -1):
                 await message.add_reaction("👃")
                 await message.add_reaction("❌")
                 await message.reply("Trop tard :rofl: :call_me:")
-            else:
+
+            if (h-m > 1 or h-m < -1):
                 await message.add_reaction("👃")
                 await message.add_reaction("❌")
                 await message.reply("T'es complètement bourré ou quoi? :rofl: :call_me:")
+        
         if (message.content == "nezsec"):
             d = str(60-s)
             await message.reply("Il reste "+d+" secondes avant la prochaine minute")
+        
         if (message.content == "leaderb"):
             s = ""
             for name,score in self.leaderb.items():
