@@ -16,6 +16,6 @@ TODO :
 - [X] +2 for 11:11, 22:22, 00:00
 - [X] x10 if you nez within the first 42 milliseconds
 - [X] note the millisecond timing if nez is in the first two seconds
-- [?] prevent 2 people from nez-ing in the same minute
+- [ ] prevent 2 people from nez-ing in the same minute
 - [ ] (maybe) add the millisecond timing if failed 2 sec before
 
