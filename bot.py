@@ -12,6 +12,8 @@ class MyClient(discord.Client):
     last = time.localtime()
     lastday = last.tm_mday
     lastmonth =last.tm_mon
+    lasthour = last.tm_hour
+    lastmin = last.tm_min
     # on_ready happens once when the bot is up and running after boot
     async def on_ready(self):
         print("bot is ready")
@@ -28,7 +30,7 @@ class MyClient(discord.Client):
         month = t.tm_mon
 
         if (message.content == "nez"):
-            if (day == self.lastday and month == self.lastmonth):
+            if (day == self.lastday and month == self.lastmonth and h == self.lasthour and m == self.lastmin):
                 await message.add_reaction("👃")
                 await message.add_reaction("❌")
                 await message.reply("Aie aie aie quelqu'un t'a volé tes zapatos :sob:")
