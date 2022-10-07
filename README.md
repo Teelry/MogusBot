@@ -12,10 +12,10 @@ $ screen -r
 
 TODO :
 
-[X] -1 if you nez 1 min before
-[X] +2 for 11:11, 22:22, 00:00
-[X] x10 if you nez within the first 42 milliseconds
-[X] note the millisecond timing if nez is in the first two seconds
-[?] prevent 2 people from nez-ing in the same minute
-[ ] (maybe) add the millisecond timing if failed 2 sec before
+- [X] -1 if you nez 1 min before
+- [X] +2 for 11:11, 22:22, 00:00
+- [X] x10 if you nez within the first 42 milliseconds
+- [X] note the millisecond timing if nez is in the first two seconds
+- [?] prevent 2 people from nez-ing in the same minute
+- [ ] (maybe) add the millisecond timing if failed 2 sec before
 
