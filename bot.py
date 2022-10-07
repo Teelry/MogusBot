@@ -41,7 +41,7 @@ class MyClient(discord.Client):
                 points = 1
                 s = ""
                 if (ms <= 42 and message.author.name != "César"):
-                    s = "Bonus ! " + str(ms) + " milisecondes"
+                    s = "Bonus ! " + str(ms) + " milisecondes "
                     mult = 10
                     await message.add_reaction("🥳")
                 
@@ -50,7 +50,7 @@ class MyClient(discord.Client):
 
                 await message.add_reaction("👃")
                 await message.add_reaction("✔️")
-                await message.reply("Félicitations ! Tu gagnes "+ str(mult * points) +" point de :nose:")
+                await message.reply(s +"Félicitations ! Tu gagnes "+ str(mult * points) +" point de :nose:")
                
                 if message.author.name in self.leaderb:
                     self.leaderb[message.author.name] += mult * points
