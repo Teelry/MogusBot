@@ -18,4 +18,4 @@ TODO :
 - [X] note the millisecond timing if nez is in the first two seconds
 - [ ] prevent 2 people from nez-ing in the same minute
 - [ ] (maybe) add the millisecond timing if failed 2 sec before
-
+- [ ] display score as a euclidian division of 42
