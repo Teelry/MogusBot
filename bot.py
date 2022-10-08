@@ -73,7 +73,7 @@ class MyClient(discord.Client):
                 self.lastday = day
                 self.lastmonth = month
                 self.lasthour = h
-                self.lastminute = m
+                self.lastmin = m
 
                 lb = open("leaderb.json", "w")
                 json.dump(self.leaderb, lb)
